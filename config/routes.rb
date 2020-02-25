@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :comments, only: [:show,:create,:update,:destroy]
+  resources :comments, only: [:index,:show,:update,:destroy]
   resources :reviews, only: [:index,:create,:update,:show]
   resources :products, only: [:index]
-  resources :users, only: [:create,:show]
+  resources :users, only: [:create,:show,:index]
 
 
   post '/login', to: 'users#login'

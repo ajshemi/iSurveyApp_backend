@@ -10,22 +10,25 @@ class ReviewsController < ApplicationController
     def show 
         review=Review.find_by(id:params[:id])
         # render json: review
-        render json: ProductSerializer.new(review.product).as_json.merge({review_id: review.id, rating: review.rating})
+        # ({product_id:review.product.id})
+        render json: ({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
     end
 
     def create
         # byebug #it knows the user_id from auth and token
         review=Review.create(review_params)
         # render json:  {review: ReviewSerializer.new(review)}
-        render json: ProductSerializer.new(review.product).as_json.merge({review_id: review.id, rating: review.rating})
+        # ProductSerializer.new(review.product).
+        render json:({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
 
     end
 
     def update
+        # byebug
         review=Review.find_by(id:params[:id]) # it knows the user_id from auth and token
         review.update(review_params)
         # render json: {review: ReviewSerializer.new(review)}
-        render json: ProductSerializer.new(review.product).as_json.merge({review_id: review.id, rating: review.rating})
+        render json: ({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
     end
 
 

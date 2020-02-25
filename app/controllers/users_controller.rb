@@ -14,15 +14,15 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    # def index
-    #   users=User.all 
-    #   render json: users
-    # end
+    def index
+      users=User.all 
+      render json: users
+    end
 
-    # def update
-    #     user=User.find_by(id:params[:id])
-    #     user.update(user_params)
-    # end
+    def update
+        user=User.find_by(id:params[:id])
+        user.update(user_params)
+    end
   
     # REGISTER
     def create
@@ -50,6 +50,7 @@ class UsersController < ApplicationController
   
   
     def persist
+      user = User.find_by(username: params[:username])
       partypass = encode_token({user_id: user.id})
       render json: {user: UserSerializer.new(user), token: partypass}
     end

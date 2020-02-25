@@ -1,7 +1,4 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :comment_id, :feedback
+  attributes :id,:user_id, :user_comment
   # has_one :user
-  def comment_id
-    self.object.id
-  end
 end

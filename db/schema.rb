@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_025401) do
+ActiveRecord::Schema.define(version: 2020_02_24_074926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text "feedback"
+    t.text "user_comment"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_02_20_025401) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password_digest" #the only place password_digest should be used
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
