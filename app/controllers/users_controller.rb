@@ -14,10 +14,10 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def index
-      users=User.all 
-      render json: users
-    end
+    # def index
+    #   users=User.all 
+    #   render json: users
+    # end
 
     def update
         user=User.find_by(id:params[:id])
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   
     # REGISTER
     def create
+      # byebug
       user = User.create(user_params)
       if user.valid?
         partypass = encode_token({user_id: user.id})
@@ -50,9 +51,11 @@ class UsersController < ApplicationController
   
   
     def persist
+      #@user.id comes from the application controller (authorized instance method)
+      #it is required for persist
       user = User.find_by(username: params[:username])
-      partypass = encode_token({user_id: user.id})
-      render json: {user: UserSerializer.new(user), token: partypass}
+      partypass = encode_token({user_id: @user.id})
+      render json: {user: UserSerializer.new(@user), token: partypass}
     end
   
     private

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-    before_action :authorized, only: [:update,:destroy]
+    before_action :authorized, only: [:update,:destroy,:create]
     #before update action you need to be authorized
 
     def index
@@ -13,10 +13,12 @@ class CommentsController < ApplicationController
         render json: comment
     end
 
-    # def create
-    #     comment=Comment.create(comment_params)
-    #     render json: comment
-    # end
+    def create
+        # byebug
+        # comment=Comment.create(comment_params)
+        comment=Comment.create(user_comment:params[:user_comment],user:@user)
+        render json: comment
+    end
 
     def update
         # byebug
@@ -26,9 +28,10 @@ class CommentsController < ApplicationController
     end
 
     def destroy
+        # byebug
         comment=Comment.find_by(id:params[:id])
         comment.delete
-        render json: {}
+        render json: comment
     end
 
 

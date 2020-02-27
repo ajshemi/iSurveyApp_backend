@@ -3,7 +3,7 @@ class User < ApplicationRecord
     validates_uniqueness_of :username
     has_many :reviews
     has_many :products, through: :reviews
-    has_one :comment
+    has_many :comments
     
     # def allcookies
     #     self.reviews.map{|element|Cookie.find_by(id: element.cookie_id)}

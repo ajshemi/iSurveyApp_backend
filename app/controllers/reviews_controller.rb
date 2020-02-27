@@ -15,12 +15,18 @@ class ReviewsController < ApplicationController
     end
 
     def create
+        # byebug
         # byebug #it knows the user_id from auth and token
-        review=Review.create(review_params)
+        # review=Review.create(review_params)
+        review=Review.create(rating:params[:rating], user:@user, product_id:params[:product_id])
+        # byebug
         # render json:  {review: ReviewSerializer.new(review)}
         # ProductSerializer.new(review.product).
-        render json:({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
-
+        # render json:({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
+        if review.valid?
+            partypass = encode_token({user_id: @user.id})
+            render json: {user: UserSerializer.new(@user),token:partypass}
+        end
     end
 
     def update

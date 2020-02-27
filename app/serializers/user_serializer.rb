@@ -1,11 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id ,:username,:comment, :user_ratings
+  attributes :id ,:username,:comments, :user_ratings
   # has_many :reviews
-  # has_one :comment
+  has_many :comments
 
-  def comment
-    CommentSerializer.new(self.object.comment)
-  end
+  # def comment
+  #   CommentSerializer.new(self.object.comment)
+  # end
 
   # def comment
   #   CommentSerializer.new(self.object.comment)

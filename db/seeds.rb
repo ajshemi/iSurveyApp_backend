@@ -18,11 +18,11 @@ Product.create(name:"Chocolate Chip",ingredients:['brown sugar','chocolate chip'
 Product.create(name:"Macadamia Nut",ingredients:['brown sugar','macadamia nut','white chocolate','wheat flour'])
 Product.create(name:"Oatmeal Raisin",ingredients:['brown sugar','raisins','rolled oats','wheat flour'])
 
-Review.create(rating:0,user:User.first,product:Product.second)
-Review.create(rating:0,user:User.first,product:Product.first)
-Review.create(rating:0,user:User.first,product:Product.third)
-Review.create(rating:0,user:User.second,product:Product.third)
-Review.create(rating:0,user:User.second,product:Product.first)
+# Review.create(rating:0,user:User.first,product:Product.second)
+# Review.create(rating:0,user:User.first,product:Product.first)
+# Review.create(rating:0,user:User.first,product:Product.third)
+# Review.create(rating:0,user:User.second,product:Product.third)
+# Review.create(rating:0,user:User.second,product:Product.first)
 
-Comment.create(user_comment:"absolutely yummy", user:User.first)
-Comment.create(user_comment:"macadamia nut cookies are the best", user:User.second)
+# Comment.create(user_comment:"absolutely yummy", user:User.first)
+# Comment.create(user_comment:"macadamia nut cookies are the best", user:User.second)
