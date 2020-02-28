@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     #before update action you need to be authorized
 
     def index
-        comments=Comment.all
+        comments=Comment.all.sort
         render json: comments
     end
 
@@ -36,11 +36,8 @@ class CommentsController < ApplicationController
 
 
     private
-
     def comment_params
         params.permit(:user_id, :user_comment)
     end
-
-
 
 end

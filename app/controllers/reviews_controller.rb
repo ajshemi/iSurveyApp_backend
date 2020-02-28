@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
-    before_action :authorized, only: [:update,:create]
+    before_action :authorized, only: [:update,:create,:destroy]
     #before create and update actions one has to be authorized 
 
     def index 
-        reviews=Review.all 
+        reviews=Review.all.sort 
         render json: reviews
     end
 
@@ -15,26 +15,51 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        # byebug
+
+        
         # byebug #it knows the user_id from auth and token
         # review=Review.create(review_params)
         review=Review.create(rating:params[:rating], user:@user, product_id:params[:product_id])
+        # review_product=@user.reviews.find_by(product)
+        # review_count=@user.reviews.find_all{|product|product.product_id==params[:product_id]}.count
+        # byebug
+        # if review_count<1 
+        if review.valid?
+            partypass = encode_token({user_id: @user.id})
+            render json: {user: UserSerializer.new(@user),token:partypass}
+                # byebug
+        else
+
+            partypass = encode_token({user_id: @user.id})
+            render json: {user: UserSerializer.new(@user),token:partypass}
+            # render json: {error: "this product is already rated"}
+        end
         # byebug
         # render json:  {review: ReviewSerializer.new(review)}
         # ProductSerializer.new(review.product).
         # render json:({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
+
+    end
+
+    def destroy
+        # byebug
+        review=Review.find_by(id:params[:id]) #it knows the user_id from auth and token
+        review.delete
         if review.valid?
             partypass = encode_token({user_id: @user.id})
             render json: {user: UserSerializer.new(@user),token:partypass}
-        end
+        end 
     end
+
 
     def update
         # byebug
         review=Review.find_by(id:params[:id]) # it knows the user_id from auth and token
-        review.update(review_params)
-        # render json: {review: ReviewSerializer.new(review)}
-        render json: ({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
+        review.update(rating:params[:rating])
+        if review.valid?
+            partypass = encode_token({user_id: @user.id})
+            render json: {user: UserSerializer.new(@user),token:partypass}
+        end 
     end
 
 

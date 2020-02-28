@@ -16,7 +16,7 @@ class UserSerializer < ActiveModel::Serializer
   # end
 
   def user_ratings
-    self.object.reviews.map do |review|
+    self.object.reviews.sort.map do |review|
       ProductSerializer.new(review.product).as_json.merge({review_id: review.id, rating: review.rating})
       # ({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
 

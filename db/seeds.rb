@@ -14,7 +14,7 @@ Comment.all.destroy_all
 User.create(username:"Sam",password:"123")
 User.create(username:"Paul",password:"123")
 
-Product.create(name:"Chocolate Chip",ingredients:['brown sugar','chocolate chip','wheat flour'])
+Product.create(name:"Chocolate Chip",ingredients:['brown sugar','chocolate chip','wheat flour','vanilla extract'])
 Product.create(name:"Macadamia Nut",ingredients:['brown sugar','macadamia nut','white chocolate','wheat flour'])
 Product.create(name:"Oatmeal Raisin",ingredients:['brown sugar','raisins','rolled oats','wheat flour'])
 
