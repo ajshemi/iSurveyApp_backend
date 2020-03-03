@@ -1,0 +1,2 @@
+class WatsonEmotion < ApplicationRecord
+end
