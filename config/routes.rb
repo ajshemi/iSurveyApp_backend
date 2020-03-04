@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # resources :watson_sentiments
   # resources :watson_emotions
-  resources :watson_emotions, only: [:show,:create]
-  resources :watson_sentiments, only: [:show,:create]
+  resources :watson_emotions, only: [:index,:show,:create]
+  resources :watson_sentiments, only: [:index,:show,:create]
   resources :comments, only: [:index,:show,:update,:destroy,:create]
   resources :reviews, only: [:index,:create,:update,:show,:destroy]
   resources :products, only: [:index]

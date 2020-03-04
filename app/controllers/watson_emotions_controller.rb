@@ -13,7 +13,6 @@ class WatsonEmotionsController < ApplicationController
     def analyze
 
         user=User.find_by(id:params[:id])
-
         response = NLU.analyze(
         text:user.comments.map{|comment|comment.user_comment}.join(" "),
         

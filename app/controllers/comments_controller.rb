@@ -17,7 +17,20 @@ class CommentsController < ApplicationController
         # byebug
         # comment=Comment.create(comment_params)
         comment=Comment.create(user_comment:params[:user_comment],user:@user)
-        render json: comment
+        
+        response = NLU.analyze(
+        text:comment.user_comment,
+        features: {
+            "emotion"=>{},
+            "sentiment"=>{}
+        }
+        ).result
+
+        # byebug
+
+        emotion=WatsonEmotion.create(comment_id:comment.id,sadness:response["emotion"]["document"]["emotion"]["sadness"],joy:response["emotion"]["document"]["emotion"]["joy"],fear:response["emotion"]["document"]["emotion"]["fear"],disgust:response["emotion"]["document"]["emotion"]["disgust"],anger:response["emotion"]["document"]["emotion"]["anger"])
+        sentiment=WatsonSentiment.create(comment_id:comment.id,score:response["sentiment"]["document"]["score"],label:response["sentiment"]["document"]["label"])
+        render json: {comment: CommentSerializer.new(comment), emotion:WatsonEmotionSerializer.new(emotion), sentiment:WatsonSentimentSerializer.new(sentiment)}
     end
 
     def update

@@ -9,6 +9,10 @@ class WatsonSentimentsController < ApplicationController
         sentiments=WatsonSentiment.all 
         render json: sentiments
     end
+    # def create
+
+    # end
+
 
     def analyze
 
