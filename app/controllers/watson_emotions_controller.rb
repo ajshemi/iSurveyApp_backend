@@ -1,4 +1,5 @@
 class WatsonEmotionsController < ApplicationController
+    before_action :authorized, only: [:update,:destroy,:create]
 
     def show
         emotion=WatsonEmotion.find_by(id:params[:id])

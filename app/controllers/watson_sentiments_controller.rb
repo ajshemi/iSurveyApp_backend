@@ -1,5 +1,5 @@
 class WatsonSentimentsController < ApplicationController
-
+    before_action :authorized, only: [:update,:destroy,:create]
     def show
         sentiment=WatsonSentiment.find_by(id:params[:id])
         render json: sentiment

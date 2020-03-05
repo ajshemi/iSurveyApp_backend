@@ -14,6 +14,18 @@ class ReviewsController < ApplicationController
         render json: ({product_id:review.product.id}).as_json.merge({review_id: review.id, rating: review.rating})
     end
 
+
+    def ratingsummary
+        user=User.find_by(id:params[:id]) 
+        allrating=Review.where(user_id:user.id)
+        render json: {rating: allrating.map{|review|ReviewSerializer.new(review).as_json.merge({name:review.product.name})}}
+    end
+
+    def allratingaverage 
+        allratingaverage =Product.all.map{|product| {rating:Review.where(product_id:product.id).average(:rating).to_i,product_id:product.id,name:product.name}}
+        render json: allratingaverage
+    end
+
     def create
 
         
