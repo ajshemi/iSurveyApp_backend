@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     end
 
     def create
-
+        # byebug
         
         # byebug #it knows the user_id from auth and token
         # review=Review.create(review_params)
