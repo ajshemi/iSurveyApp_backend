@@ -16,22 +16,27 @@ class CommentsController < ApplicationController
     def create
         # byebug
         # comment=Comment.create(comment_params)
-        comment=Comment.create(user_comment:params[:user_comment],user:@user)
-        if comment.valid?
-            response = NLU.analyze(
-            text:comment.user_comment,
-            features: {
-                "emotion"=>{},
-                "sentiment"=>{}
-            }
-            ).result
-
+        # if comment.valid?
+        response = NLU.analyze(
+        text:params[:user_comment]
+        # text:comment.user_comment,
+        features: {
+            "emotion"=>{},
+            "sentiment"=>{}
+        }
+        ).result
+        
+        if response.valid?
             # byebug
-
+            comment=Comment.create(user_comment:params[:user_comment],user:@user)
+            # comment=Comment.create(comment_params)
             emotion=WatsonEmotion.create(user:@user,comment_id:comment.id,sadness:response["emotion"]["document"]["emotion"]["sadness"],joy:response["emotion"]["document"]["emotion"]["joy"],fear:response["emotion"]["document"]["emotion"]["fear"],disgust:response["emotion"]["document"]["emotion"]["disgust"],anger:response["emotion"]["document"]["emotion"]["anger"])
             sentiment=WatsonSentiment.create(user:@user,comment_id:comment.id,score:response["sentiment"]["document"]["score"],label:response["sentiment"]["document"]["label"])
             render json: {comment: CommentSerializer.new(comment), emotion:WatsonEmotionSerializer.new(emotion), sentiment:WatsonSentimentSerializer.new(sentiment)}
         
+        else
+            byebug
+            render json: {error: "invalid comment or Watson auth error"}
         end
     end
 
