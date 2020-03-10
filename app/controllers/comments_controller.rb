@@ -18,15 +18,17 @@ class CommentsController < ApplicationController
         # comment=Comment.create(comment_params)
         # if comment.valid?
         response = NLU.analyze(
-        text:params[:user_comment]
+        text:params[:user_comment],
         # text:comment.user_comment,
         features: {
             "emotion"=>{},
             "sentiment"=>{}
         }
         ).result
+
+        # byebug
         
-        if response.valid?
+        if response
             # byebug
             comment=Comment.create(user_comment:params[:user_comment],user:@user)
             # comment=Comment.create(comment_params)
@@ -35,7 +37,6 @@ class CommentsController < ApplicationController
             render json: {comment: CommentSerializer.new(comment), emotion:WatsonEmotionSerializer.new(emotion), sentiment:WatsonSentimentSerializer.new(sentiment)}
         
         else
-            byebug
             render json: {error: "invalid comment or Watson auth error"}
         end
     end
