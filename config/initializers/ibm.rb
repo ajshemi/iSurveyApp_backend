@@ -7,10 +7,11 @@ require "ibm_watson/natural_language_understanding_v1"
 # If using IAM
 authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
   apikey:ENV['ibm_api_key']
+  # iam_url:"https://iam.cloud.ibm.com/identity/token"
 )
 NLU = IBMWatson::NaturalLanguageUnderstandingV1.new(
   authenticator: authenticator,
-  version: "2018-03-16"
+  version: "2019-07-12"
 )
 
 NLU.service_url = "https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/21007ec0-edd4-43f7-a8d6-3b61d569b4ac"
