@@ -6,7 +6,7 @@ require "ibm_watson/natural_language_understanding_v1"
 
 # If using IAM
 authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
-  apikey:ENV["apikey"]
+  apikey:ENV['ibm_api_key']
 )
 NLU = IBMWatson::NaturalLanguageUnderstandingV1.new(
   authenticator: authenticator,
