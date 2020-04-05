@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Backend of cookie survey app built with Ruby on Rails Active Record Framework 
+*Used postgresql as the database for Active Record
+*Used external/third-party API; IBM Watson Natural Language Understanding (NLU). 
+*IBM Watson NLU was used to analyze comments for sentiments and emotions.
