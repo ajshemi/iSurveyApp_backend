@@ -29,7 +29,7 @@
 <div align="center">
   <p> 🧭Explore:
     <a href="https://youtu.be/xOLTZ-pW3Qo">Demo</a> || 
-    <a href="https://github.com/ajshemi/iSurveyApp_backend">Backend</a>
+    <a href="https://github.com/ajshemi/iSurveyApp_Reduxfrontend_Heroku">Frontend</a>
   </p>
 </div>
 
@@ -39,7 +39,7 @@
 
 This web app makes use of the following:
 
-[**Backend**](https://github.com/ajshemi/iSurveyApp_backend)
+**Backend**
 
 - Ruby [2.6.1]
 - Rails [~> 5.2.3] - MVC web framework used as an API
@@ -50,7 +50,7 @@ This web app makes use of the following:
 - JWT - securing tokens
 - PostgreSQL [>= 0.18, < 2.0] - Database
 
-**Front End**
+[**Front End**](https://github.com/ajshemi/iSurveyApp_Reduxfrontend_Heroku)
 
 - React.js
 - React Router - Declarative Routing
@@ -65,7 +65,7 @@ This web app makes use of the following:
 
 **Backend Installation:**
 
-- Clone [backend repo](https://github.com/ajshemi/iSurveyApp_backend) to your local machine `git clone <backend-repo-url>`
+- Clone this repo to your local machine `git clone <backend-repo-url>`
 - run `bundle install` to install required dependencies
 - Ensure you have PostgreSQL running
 - run `rails db:create` to create a database locally.
@@ -75,7 +75,7 @@ This web app makes use of the following:
 
 **Frontend Installation:**
 
-- Clone this repo to your local machine `git clone <this-repo-url>`
+- Clone [frontend repo](https://github.com/ajshemi/iSurveyApp_Reduxfrontend_Heroku) to your local machine `git clone <frontend-repo-url>`
 - Ensure your Backend API is running at `http://localhost:3000/`
 - run `npm install` to install all dependencies
 - run `npm start` to start server
