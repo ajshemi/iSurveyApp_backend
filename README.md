@@ -1,24 +1,14 @@
 # README
 
-\*Backend of cookie survey app built with Ruby on Rails Active Record Framework.
+<!-- \*Backend of cookie survey app built with Ruby on Rails Active Record Framework.
 
 \*Used postgresql as the database for Active Record.
 
 \*Used external/third-party API; IBM Watson Natural Language Understanding (NLU).
 
-\*IBM Watson NLU was used to analyze comments for sentiments and emotions.
-
-\*Link to Cookie Survey App demo video on youtube [demo video](https://youtu.be/xOLTZ-pW3Qo)
-
-\*This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-\*Front-end built with React, HTML, CSS, and Chart.js
-
-\*Front-end of cookie survey app with backend server hosted on Heroku.
+\*IBM Watson NLU was used to analyze comments for sentiments and emotions. -->
 
 \*Link to Cookie Survey App on Heroku [Cookie Survey App on Heroku](https://cookiesurveyapp.herokuapp.com/)
-
-\*Link to Cookie Survey App demo video on youtube [demo video](https://youtu.be/xOLTZ-pW3Qo)
 
 <h1 align="center">Cookie Survey App🥛🍪 </h1>
 
