@@ -14,7 +14,7 @@ NLU = IBMWatson::NaturalLanguageUnderstandingV1.new(
   authenticator: authenticator,
   version: "2019-07-12"
 )
-NLU.service_url = ENV['url'] 
+NLU.service_url = "https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/21007ec0-edd4-43f7-a8d6-3b61d569b4ac"
 
 # response=User.all.map{|user| 
 # natural_language_understandingNLUNLU.analyze(text:user.comments.map{|comment|comment.user_comment}.join(" "), features: {
