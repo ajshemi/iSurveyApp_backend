@@ -14,19 +14,23 @@ class CommentsController < ApplicationController
     end
 
     def create
-        # byebug
         # comment=Comment.create(comment_params)
         # if comment.valid?
-        response = NLU.analyze(
-        text:params[:user_comment],
-        # text:comment.user_comment,
-        features: {
-            "emotion"=>{},
-            "sentiment"=>{}
-        }
-        ).result
-
-        # byebug
+        begin
+            response = NLU.analyze(
+                text:params[:user_comment],
+                # text:comment.user_comment,
+                features: {
+                    "emotion"=>{},
+                    "sentiment"=>{}
+                }
+            ).result
+        rescue  IBMWatson::ApiException => ex 
+            # print "Method failed with status code #{ex.code}: #{ex.error}"
+            # print "ex #{ex}"
+        end
+        #response = NLU.analyze( text:params[:user_comment],features: {"emotion"=>{}, "sentiment"=>{}})
+    
         
         if response
             # byebug
@@ -37,7 +41,8 @@ class CommentsController < ApplicationController
             render json: {comment: CommentSerializer.new(comment), emotion:WatsonEmotionSerializer.new(emotion), sentiment:WatsonSentimentSerializer.new(sentiment)}
         
         else
-            render json: {error: "invalid comment or Watson auth error"}
+            # render json: {error: "invalid comment or Watson auth error"}
+            render json: {error: "status code #{ex.code}: #{ex.error}"}
         end
     end
 
