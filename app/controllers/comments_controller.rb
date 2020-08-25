@@ -41,6 +41,7 @@ class CommentsController < ApplicationController
             render json: {comment: CommentSerializer.new(comment), emotion:WatsonEmotionSerializer.new(emotion), sentiment:WatsonSentimentSerializer.new(sentiment)}
         
         else
+            # byebug
             # render json: {error: "invalid comment or Watson auth error"}
             render json: {error: "status code #{ex.code}: #{ex.error}"}
         end
