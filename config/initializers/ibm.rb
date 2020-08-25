@@ -8,7 +8,6 @@ require "ibm_watson/natural_language_understanding_v1"
 include IBMWatson
 authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
   apikey:ENV['ibm_api_key']
-  # iam_url:"https://iam.cloud.ibm.com/identity/token"
 )
 NLU = IBMWatson::NaturalLanguageUnderstandingV1.new(
   authenticator: authenticator,
