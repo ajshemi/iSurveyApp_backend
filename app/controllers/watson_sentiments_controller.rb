@@ -17,7 +17,7 @@ class WatsonSentimentsController < ApplicationController
     def analyze
 
         @user=User.find_by(id:params[:id])
-        response = NLU.analyze(
+        response = watson_nlu(   #NLU.analyze(
         text:@user.comments.map{|comment|comment.user_comment}.join(" "),
         features: {
             "sentiment"=>{},

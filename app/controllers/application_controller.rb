@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::API
   # before_action :authorized
+  def watson_nlu(payload)
+    NLU.analyze(payload)
+  end
 
   def encode_token(payload)
     # should store secret in env variable
