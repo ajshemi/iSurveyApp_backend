@@ -2,6 +2,27 @@ class CommentsController < ApplicationController
 
     before_action :authorized, only: [:update,:destroy,:create]
     #before update action you need to be authorized
+    before_action :authorized, only: [:update,:destroy,:create]
+    #before update action you need to be authorized
+      # before_action :authorized
+    require "json"
+    require "ibm_watson/authenticators"
+    require "ibm_watson/natural_language_understanding_v1"
+    # Access tokens are valid for approximately one hour and must be regenerated.?
+    # If using IAM
+    include IBMWatson
+    authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
+        apikey:ENV['NATURAL_LANGUAGE_UNDERSTANDING_APIKEY']
+    )
+    NLU = IBMWatson::NaturalLanguageUnderstandingV1.new(
+        authenticator: authenticator,
+        version: "2019-07-12"
+    )
+    NLU.service_url = ENV['NATURAL_LANGUAGE_UNDERSTANDING_URL']#"https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/21007ec0-edd4-43f7-a8d6-3b61d569b4ac"
+    
+    def watson_nlu(payload)
+        NLU.analyze(payload)
+    end
 
     def index
         comments=Comment.all
