@@ -19,18 +19,18 @@ class UsersController < ApplicationController
     #   render json: users
     # end
 
-    def update
-        user=User.find_by(id:params[:id])
-        user.update(user_params)
-    end
+    # def update
+    #     user=User.find_by(id:params[:id])
+    #     user.update(user_params)
+    # end
   
     # REGISTER
     def create
       # byebug
-      user = User.create(user_params)
-      if user.valid?
-        partypass = encode_token({user_id: user.id})
-        render json: {user: UserSerializer.new(user), token: partypass}
+      @user = User.create(user_params)
+      if @user.valid?
+        partypass = encode_token({user_id: @user.id})
+        render json: {user: UserSerializer.new(@user), token: partypass}
       else
         render json: {error: "Invalid username or password"}
       end
@@ -39,11 +39,11 @@ class UsersController < ApplicationController
     # LOGGING IN
     def login
     #   byebug
-      user = User.find_by(username: params[:username])
+      @user = User.find_by(username: params[:username])
   
-      if user && user.authenticate(params[:password])
-        partypass = encode_token({user_id: user.id})
-        render json: {user: UserSerializer.new(user), token: partypass}
+      if @user && @user.authenticate(params[:password])
+        partypass = encode_token({user_id: @user.id})
+        render json: {user: UserSerializer.new(@user), token: partypass}
       else
         render json: {error: "Invalid username or password"}
       end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     def persist
       #@user.id comes from the application controller (authorized instance method)
       #it is required for persist
-      user = User.find_by(username: params[:username])
+      # user = User.find_by(username: params[:username])
       partypass = encode_token({user_id: @user.id})
       render json: {user: UserSerializer.new(@user), token: partypass}
     end
