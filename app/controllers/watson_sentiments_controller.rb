@@ -16,9 +16,9 @@ class WatsonSentimentsController < ApplicationController
 
     def analyze
 
-        user=User.find_by(id:params[:id])
+        @user=User.find_by(id:params[:id])
         response = NLU.analyze(
-        text:user.comments.map{|comment|comment.user_comment}.join(" "),
+        text:@user.comments.map{|comment|comment.user_comment}.join(" "),
         features: {
             "sentiment"=>{},
         }
@@ -28,7 +28,7 @@ class WatsonSentimentsController < ApplicationController
 
         sentiment=WatsonSentiment.create(score:response["sentiment"]["document"]["score"],label:response["sentiment"]["document"]["label"])
         # byebug
-        render json: WatsonSentimentSerializer.new(sentiment).as_json.merge({user_id:user.id})
+        render json: WatsonSentimentSerializer.new(sentiment).as_json.merge({user_id:@user.id})
     
     end
 
