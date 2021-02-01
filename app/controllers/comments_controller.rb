@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
         # comment=Comment.create(comment_params)
         # if comment.valid?
         begin
-            response = NLU.analyze(
+            response = watson_nlu(   #NLU.analyze(
                 text:params[:user_comment],
                 # text:comment.user_comment,
                 features: {
